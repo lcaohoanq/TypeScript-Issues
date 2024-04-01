@@ -248,6 +248,30 @@ enum Role {
 // ADMIN = ADMIN, READ_ONLY = 100, AUTHOR = 101
 ```
 
+# Union
+
+- Look back to the sum function, if i want to make it more flexible, rename it to combine which i can do concatenate for string or addition for a number , i can use union type
+- Typescript will complain if you try to use a method that is not available on all types in the union, for this case is if two input are string, not use + operator directly
+- We need to check it at runtime
+  ![alt text](image-4.png)
+  > You do not always check the type at runtime, its base on your requirement: "does each datatype handle a slightly different way?"
+
+```ts
+function combine(input1: number | string, input2: number | string) {
+  let result;
+  if (typeof input1 === "number" && typeof input2 === "number") {
+    result = input1 + input2;
+  } else {
+    result = input1.toString() + input2.toString();
+  }
+  return result;
+}
+
+console.log(combine(8, 8)); // 16
+
+console.log(combine("Hoang", "Cao")); // HoangCao
+```
+
 ## Any
 
 - Any kind of value, no specific type assignment

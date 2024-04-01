@@ -1,34 +1,13 @@
-enum Role {
-  ADMIN = "ADMIN",
-  READ_ONLY = 100,
-  AUTHOR,
+function combine(input1: number | string, input2: number | string) {
+  let result;
+  if (typeof input1 === "number" && typeof input2 === "number") {
+    result = input1 + input2;
+  } else {
+    result = input1.toString() + input2.toString();
+  }
+  return result;
 }
 
-const person = {
-  name: "Luu Cao Hoang",
-  age: 20,
-  hobbies: ["Photography", "Bike", "Traveling"],
-  role: Role.ADMIN,
-};
+console.log(combine(8, 8)); // 16
 
-// person.role.push("admin");
-// person.role.push(10);
-
-// person.role = [0, "admin", "user"];
-
-let favoriteActivities: string[];
-favoriteActivities = ["Sports"];
-
-console.log(person);
-
-for (const hobby of person.hobbies) {
-  console.log(hobby.toUpperCase());
-}
-
-if (person.role === Role.ADMIN) {
-  console.log("is admin");
-}
-
-for (const role of Object.values(Role)) {
-  console.log(role);
-}
+console.log(combine("Hoang", "Cao")); // HoangCao
