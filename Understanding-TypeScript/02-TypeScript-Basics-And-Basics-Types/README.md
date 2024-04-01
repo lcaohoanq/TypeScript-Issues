@@ -248,6 +248,15 @@ enum Role {
 // ADMIN = ADMIN, READ_ONLY = 100, AUTHOR = 101
 ```
 
+## Any
+
+- Any kind of value, no specific type assignment
+
+```ts
+let favoriteActivities: any;
+let favoriteActivities: any[]; //flexible array
+```
+
 # Type Assignment && Type Inference
 
 > variable_name: type
