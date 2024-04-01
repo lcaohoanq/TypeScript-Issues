@@ -328,6 +328,19 @@ function combine(
 );
 ```
 
+# Type Alias
+
+```ts
+type Combinable = number | string;
+type ConversionDescriptor = "as-number" | "as-text";
+
+function combine(
+  input1: Combinable,
+  input2: Combinable,
+  resultConversion: ConversionDescriptor
+);
+```
+
 # Type Assignment && Type Inference
 
 > variable_name: type
