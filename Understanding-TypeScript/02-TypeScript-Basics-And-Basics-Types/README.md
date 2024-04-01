@@ -140,6 +140,65 @@ for (const hobby of person.hobbies) {
 
 ![alt text](image.png)
 
+# Tuple
+
+- Fixed-length array
+- Fixed type in each position
+
+```ts
+const person = {
+  name: "Luu Cao Hoang",
+  age: 20,
+  hobbies: ["Photography", "Bike", "Traveling"],
+
+  role: [2, "author"], //tuple
+  //(property) role: (number | string)[]
+};
+
+person.role.push("admin");
+person.role[1] = 10;
+//no error, role become: [2, "author", "admin", 10]
+
+person.role[1] = 10; //error: Type 'number' is not assignable to type 'string'.
+```
+
+![alt text](image-2.png)
+
+> Caution: when you do not specify clearly the type of the tuple with the declaration, TypeScript will infer the type of the tuple as an array of union type.
+
+```ts
+const person = {
+  name: "Luu Cao Hoang",
+  age: 20,
+  hobbies: ["Photography", "Bike", "Traveling"],
+  role: [2, "author"],
+};
+
+person.role = [0, "admin", "user"]; //this work!!!!!
+```
+
+![alt text](image-3.png)
+
+- Compare to this:
+
+```ts
+const person = {
+  name: string;
+  age: number;
+  hobbies: string[];
+  role: [number, string]; //tuple
+} = {
+  name: "Luu Cao Hoang",
+  age: 20,
+  hobbies: ["Photography", "Bike", "Traveling"],
+  role: [2, "author"],
+};
+
+person.role = [0, "admin", "user"]; //error !!!!!
+```
+
+> error because we specify exactly the type of the tuple: [number, string]
+
 # Type Assignment && Type Inference
 
 > variable_name: type
