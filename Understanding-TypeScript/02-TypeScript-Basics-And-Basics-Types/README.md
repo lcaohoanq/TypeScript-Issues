@@ -415,6 +415,26 @@ if (typeof userInput === "string") {
 
 > unknown is better than any because it is more restrictive than any, it forces you to do a type check before you can assign it to another variable.
 
+# never type
+
+> never is a type that functions return when they never return a value (never reach the end of the function)
+> crash or break the script
+
+```ts
+function generateError(message: string, code: number): never {
+  throw { message: message, errorCode: code };
+}
+
+generateError("An error occurred", 500);
+```
+
+![alt text](image-5.png)
+
+```ts
+console.log(generateError("An error occurred", 500));
+// nothing != undefined (when we want to print the void function)
+```
+
 # Type Assignment && Type Inference
 
 > variable_name: type
