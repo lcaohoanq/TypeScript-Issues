@@ -383,6 +383,38 @@ addAndHandler(10, 20, (result) => {
 
 # unknown type
 
+```ts
+let userInput: unknown;
+
+//we don't know wether the user input is a number or a string
+
+userInput = 5;
+userInput = "Hoang"; // hover and receive userInput: unknown
+
+let userName: string;
+userName = userInput; //error Type 'unknown' is not assignable to type 'string'.
+
+//but if i switch unknown to any, it work!!!!!
+```
+
+- do type check before assign to another variable
+
+```ts
+let userInput: unknown;
+
+userInput = 5;
+userInput = "Hoang";
+
+let userName: string;
+
+// work!!! typescript know that userInput is a string
+if (typeof userInput === "string") {
+  userName = userInput;
+}
+```
+
+> unknown is better than any because it is more restrictive than any, it forces you to do a type check before you can assign it to another variable.
+
 # Type Assignment && Type Inference
 
 > variable_name: type
