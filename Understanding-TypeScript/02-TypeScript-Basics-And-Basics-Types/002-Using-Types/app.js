@@ -13,3 +13,17 @@ function printResultV2(num) {
 }
 printResult(add(5, 12));
 console.log(printResult(add(5, 12)));
+function addAndHandler(n1, n2, cb) {
+    var result = n1 + n2;
+    cb(result);
+}
+function addAndHandlerV2(n1, n2, cb) {
+    var result = n1 + n2;
+    var value = cb(result);
+}
+addAndHandler(10, 20, function (result) {
+    console.log(result);
+});
+addAndHandlerV2(10, 20, function (result) {
+    return result;
+});

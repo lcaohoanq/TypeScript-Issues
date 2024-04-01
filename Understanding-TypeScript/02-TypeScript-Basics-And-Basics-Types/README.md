@@ -365,6 +365,24 @@ printResult(add(5, 12)); //17
 console.log(printResult(add(5, 12))); //undefined
 ```
 
+# Function Types && Callbacks
+
+```ts
+function addAndHandler(n1: number, n2: number, cb: (n: number) => void) {
+  const result = n1 + n2;
+  cb(result);
+}
+
+//cb: (n: number) => void implies that the callback function should take a number as an argument and return void only
+
+addAndHandler(10, 20, (result) => {
+  console.log(result);
+  //return result //not cause error, but this don't work
+});
+```
+
+# unknown type
+
 # Type Assignment && Type Inference
 
 > variable_name: type
