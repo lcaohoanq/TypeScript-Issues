@@ -199,6 +199,55 @@ person.role = [0, "admin", "user"]; //error !!!!!
 
 > error because we specify exactly the type of the tuple: [number, string]
 
+# Enum
+
+> The name of enum must be in PascalCase
+
+- Enum is a way of giving more friendly names to sets of numeric values.
+- Automatically enumerated (liệt kê) global constant identifiers.
+
+```ts
+enum Role {
+  ADMIN, //0
+  READ_ONLY, //1
+  AUTHOR, //2
+}
+```
+
+- No specify: increment from 0
+- Specify: increment from the specified number
+- You can also assign your own values to the enum keys:
+
+```ts
+enum Role {
+  ADMIN = 7,
+  READ_ONLY,
+  AUTHOR,
+}
+// ADMIN = 7, READ_ONLY = 8, AUTHOR = 9
+
+enum Role {
+  ADMIN = 7,
+  READ_ONLY = 100,
+  AUTHOR = 200,
+}
+// ADMIN = 7, READ_ONLY = 100, AUTHOR = 200
+
+enum Role {
+  ADMIN = "ADMIN",
+  READ_ONLY = 100,
+  AUTHOR = 200,
+}
+// ADMIN = ADMIN, READ_ONLY = 100, AUTHOR = 200
+
+enum Role {
+  ADMIN = "ADMIN",
+  READ_ONLY = 100,
+  AUTHOR,
+}
+// ADMIN = ADMIN, READ_ONLY = 100, AUTHOR = 101
+```
+
 # Type Assignment && Type Inference
 
 > variable_name: type
