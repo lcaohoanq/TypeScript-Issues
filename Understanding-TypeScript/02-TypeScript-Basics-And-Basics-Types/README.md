@@ -248,6 +248,15 @@ enum Role {
 // ADMIN = ADMIN, READ_ONLY = 100, AUTHOR = 101
 ```
 
+## Any
+
+- Any kind of value, no specific type assignment
+
+```ts
+let favoriteActivities: any;
+let favoriteActivities: any[]; //flexible array
+```
+
 # Union
 
 - Look back to the sum function, if i want to make it more flexible, rename it to combine which i can do concatenate for string or addition for a number , i can use union type
@@ -272,13 +281,51 @@ console.log(combine(8, 8)); // 16
 console.log(combine("Hoang", "Cao")); // HoangCao
 ```
 
-## Any
+# Literal
 
-- Any kind of value, no specific type assignment
+- Specific value
 
 ```ts
-let favoriteActivities: any;
-let favoriteActivities: any[]; //flexible array
+function combine(
+  input1: number | string,
+  input2: number | string,
+  resultConversion: string
+) {
+  let result;
+  if (typeof input1 === "number" && typeof input2 === "number") {
+    result = input1 + input2;
+  } else {
+    result = input1.toString() + input2.toString();
+  }
+  if (resultConversion === "as-number") {
+    return +result; // convert to number
+  } else {
+    return result.toString();
+  }
+}
+
+console.log(combine("30", "26", "as-number"));
+//3026
+//not which value that i expected
+```
+
+- I will modifier the if condition for match my requirement
+  > if (typeof input1 === "number" && typeof input2 === "number") || resultConversion === "as-number"
+
+```ts
+console.log(combine("30", "26", "as-number")); //56
+```
+
+- The resultConversion variable only store input values: `"as-number"` or `"as-text"`
+  - I can you enum
+  - I can use literal type of course
+
+```ts
+function combine(
+  input1: number | string,
+  input2: number | string,
+  resultConversion: "as-number" | "as-text"
+);
 ```
 
 # Type Assignment && Type Inference
