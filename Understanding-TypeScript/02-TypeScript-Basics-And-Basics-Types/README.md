@@ -341,6 +341,30 @@ function combine(
 );
 ```
 
+# Function Return Types && Void
+
+```ts
+function add(n1: number, n2: number) {
+  return n1 + n2;
+}
+
+function add(n1: number, n2: number): string {
+  return n1 + n2;
+}
+//error, conflict with typescript infer return type is number
+//if you do not have any reason to specify the return type, you should not do it
+
+function printResult(num: number): void {
+  console.log("Result: " + num);
+}
+
+let a = undefined;
+
+printResult(add(5, 12)); //17
+
+console.log(printResult(add(5, 12))); //undefined
+```
+
 # Type Assignment && Type Inference
 
 > variable_name: type
