@@ -24,6 +24,47 @@
 true, false
 ```
 
+## object
+
+- Any JavaScript object, more specific types (type of object) are possible
+
+```ts
+const person = {
+  name: "Luu Cao Hoang",
+  age: 20,
+};
+
+// const person: {
+//   name: string;
+//   age: number;
+//}
+
+//any object come with object type
+
+const person: object = {
+  name: "Luu Cao Hoang",
+  age: 20,
+};
+
+// const person: object
+
+console.log(person.name);
+// error: Property 'name' does not exist on type 'object'.
+// because we specify for typescript that person is an object (original object type)
+
+//if we want to specify the clearly type of the object, we can do like below
+const person: {
+  //key: type
+  name: string;
+  age: number;
+} = {
+  name: "Luu Cao Hoang",
+  age: 20,
+};
+
+console.log(person.name); //no error
+```
+
 # Type Assignment && Type Inference
 
 > variable_name: type
