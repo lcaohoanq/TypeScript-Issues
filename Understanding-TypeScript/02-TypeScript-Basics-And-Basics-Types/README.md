@@ -1,5 +1,10 @@
 # Core Types
 
+In TypeScript, you work with types like string or number all the times.
+
+> Important: It is string and number (etc.), NOT String, Number etc.
+> The core primitive types in TypeScript are all lowercase!
+
 ## number
 
 - All number, no difference between integers or floats
@@ -64,6 +69,76 @@ const person: {
 
 console.log(person.name); //no error
 ```
+
+### nested object
+
+Let's say you have this JavaScript object:
+
+```ts
+const product = {
+  id: 'abc1',
+  price: 12.99,
+  tags: ['great-offer', 'hot-and-new'],
+  details: {
+    title: 'Red Carpet',
+    description: 'A great carpet - almost brand-new!'
+  }
+}
+This would be the type of such an object:
+
+{
+  id: string;
+  price: number;
+  tags: string[];
+  details: {
+    title: string;
+    description: string;
+  }
+}
+```
+
+So you have an object type in an object type so to say.
+
+## Array
+
+- Any JavaScript array, type can be flexible or strict (regarding the element types)
+  > [1,2,3] > ["Hello", "World"]
+
+```ts
+const person = {
+  name: "Luu Cao Hoang",
+  age: 20,
+  hobbies: ["Photography", "Bike", "Traveling"],
+};
+
+// (property) hobbies: string[]
+
+let favoriteActivities: string[];
+favoriteActivities = ["Sports"];
+favoriteActivities = "Sport"; //error: Type 'string' is not assignable to type 'string[]'.
+favoriteActivities = ["Sports", 19]; //error: Type 'number' is not assignable to type 'string'.
+
+let favoriteActivities: any[];
+// flexible array
+// you can put any type of element in the array
+```
+
+- Iterating through an array
+
+```ts
+const person = {
+  name: "Luu Cao Hoang",
+  age: 20,
+  hobbies: ["Photography", "Bike", "Traveling"],
+};
+
+for (const hobby of person.hobbies) {
+  console.log(hobby.toUpperCase());
+  //can use any string method because typescript know that hobby is a string
+}
+```
+
+![alt text](image.png)
 
 # Type Assignment && Type Inference
 
