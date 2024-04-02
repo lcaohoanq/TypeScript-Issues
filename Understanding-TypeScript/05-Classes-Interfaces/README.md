@@ -219,3 +219,47 @@ it.setName("New Name Here");
 it.printEmployeeInformation();
 console.log(it);
 ```
+
+## Overriding Properties & The "protected" Modifier
+
+```ts
+class Department {
+  protected employees: string[] = [];
+
+  constructor(private readonly id: string, private name: string) {}
+
+  describe() {
+    console.log(`Department: (${this.id}): ${this.name}`);
+  }
+
+  addEmployee(employee: string) {
+    this.employees.push(employee);
+  }
+
+  printEmployeeInformation() {
+    console.log(this.employees.length);
+    console.log(this.employees);
+  }
+}
+
+class AccountingDepartment extends Department {
+  private constructor(id: string, private reports: string[]) {
+    super(id, "Accounting");
+  }
+
+  addEmployee(employee: string): void {
+    if (employee === "Hoang") {
+      return;
+    }
+    this.employees.push(employee);
+  }
+
+  addReport(text: string) {
+    this.reports.push(text);
+  }
+
+  printReports() {
+    console.log(this.reports);
+  }
+}
+```
