@@ -66,3 +66,72 @@ accountingCopy2.describe(); //Department: DUMMY
 const accountingCopy3 = { describe: accounting.describe.bind(accounting) };
 accountingCopy3.describe(); //Department: Accounting
 ```
+
+## access modifier
+
+```ts
+class Department {
+  name: string;
+  employees: string[] = [];
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  describe() {
+    console.log("Department: " + this.name);
+  }
+
+  addEmployee(employee: string) {
+    this.employees.push(employee);
+  }
+
+  printEmployeeInformation() {
+    console.log(this.employees.length);
+    console.log(this.employees);
+  }
+}
+
+const accounting = new Department("Accounting");
+accounting.describe();
+
+accounting.addEmployee("Hoang");
+accounting.addEmployee("Hai");
+accounting.employees[2] = "Anna"; //problem
+
+for (const employee of accounting.employees) {
+  console.log(employee);
+}
+```
+
+> problem is that we can access the employees array directly and change it.
+
+```ts
+class Department {
+  name: string;
+  private employees: string[] = [];
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  describe() {
+    console.log("Department: " + this.name);
+  }
+
+  addEmployee(employee: string) {
+    this.employees.push(employee);
+  }
+
+  printEmployeeInformation() {
+    console.log(this.employees.length);
+    console.log(this.employees);
+  }
+}
+
+const accounting = new Department("Accounting");
+accounting.describe();
+accounting.addEmployee("Hoang");
+accounting.addEmployee("Hai");
+accounting.printEmployeeInformation();
+```
