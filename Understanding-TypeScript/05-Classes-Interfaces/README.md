@@ -412,3 +412,54 @@ const accounting2 = AccountingDepartment.getInstance();
 ## Interfaces
 
 - Interfaces are a way to define the structure of an object.
+
+### Using interface with class
+
+- Why do we need the same type constructor
+
+```ts
+interface Person {
+  name: string;
+  age: number;
+
+  greet(phrase: string): void;
+}
+
+type Person = {
+  name: string;
+  age: number;
+
+  greet(phrase: string): void;
+};
+```
+
+- we could replace the interface with a type, but the interface is more commonly used for this purpose.
+- when you define an interface, it must be clear that you want to describe the structure of an object.
+- Interface can be implemented by a class make an contract with class, make multiple inheritance.
+
+```ts
+interface Greetable {
+  name: string;
+
+  greet(phrase: string): void;
+}
+
+class Person implements Greetable {
+  name: string;
+  age = 30;
+
+  constructor(n: string) {
+    this.name = n;
+  }
+
+  greet(phrase: string) {
+    console.log(phrase + " " + this.name);
+  }
+}
+
+let user1: Greetable;
+
+user1 = new Person("Hoang");
+
+user1.greet("Hi there - I am");
+```
