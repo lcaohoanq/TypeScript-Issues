@@ -263,3 +263,84 @@ class AccountingDepartment extends Department {
   }
 }
 ```
+
+## Getters & Setters
+
+```ts
+class Department {
+  private lastReport: string;
+
+  get mostRecentReport() {
+    if (this.lastReport) {
+      return this.lastReport;
+    }
+    throw new Error("No report found.");
+  }
+
+  set mostRecentReport(value: string) {
+    if (!value) {
+      throw new Error("Please pass in a valid value!");
+    }
+    this.addReport(value);
+  }
+
+  constructor(private readonly id: string, private name: string) {}
+
+  addEmployee(employee: string) {
+    this.employees.push(employee);
+  }
+}
+```
+
+- If we do not have a value to return, we can throw an error.
+
+```ts
+console.log(accounting.mostRecentReport);
+accounting.addReport("Something went wrong...");
+//failed
+
+accounting.addReport("Something went wrong...");
+console.log(accounting.mostRecentReport);
+//work
+```
+
+- Access the setter method like property
+
+```ts
+accounting.mostRecentReport = "Year End Report";
+```
+
+## Static Methods & Properties
+
+- Static methods and properties are attached to the class itself, not to instances of the class.
+- Often used for utility functions that you want to group or map to a class.
+
+```ts
+class AccountingDepartment extends Department {
+  private lastReport: string;
+
+  get mostRecentReport() {
+    if (this.lastReport) {
+      return this.lastReport;
+    }
+    throw new Error("No report found.");
+  }
+
+  set mostRecentReport(value: string) {
+    if (!value) {
+      throw new Error("Please pass in a valid value!");
+    }
+    this.addReport(value);
+  }
+
+  constructor(id: string, private reports: string[]) {
+    super(id, "Accounting");
+    this.lastReport = reports[0];
+  }
+
+  static createEmployee(name: string) {
+    return { name };
+
+```
+
+- return { name } = return {name : name}
