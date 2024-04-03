@@ -344,3 +344,30 @@ class AccountingDepartment extends Department {
 ```
 
 - return { name } = return {name : name}
+
+## Abstract Classes
+
+- Abstract classes are classes that are meant to be extended, but not instantiated directly.
+
+```ts
+abstract class Department {
+  static fiscalYear = 2020;
+  protected employees: string[] = [];
+
+  constructor(protected readonly id: string, protected name: string) {}
+
+  static createEmployee(name: string) {
+    return { name };
+  }
+
+  abstract describe(this: Department): void;
+
+  addEmployee(employee: string) {
+    this.employees.push(employee);
+  }
+}
+```
+
+- Must define the return type of the method in the abstract class.
+- Abstract class are useful when you want all classes base on some other class share some common method or properties.
+- Abstract class can have abstract method
