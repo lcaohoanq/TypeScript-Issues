@@ -1,5 +1,5 @@
 interface Greetable {
-  name: string;
+  readonly name: string;
 
   greet(phrase: string): void;
 }
@@ -20,5 +20,6 @@ class Person implements Greetable {
 let user1: Greetable;
 
 user1 = new Person("Hoang");
+// user1.name = "Duong";
 
 user1.greet("Hi there - I am");

@@ -436,6 +436,7 @@ type Person = {
 - we could replace the interface with a type, but the interface is more commonly used for this purpose.
 - when you define an interface, it must be clear that you want to describe the structure of an object.
 - Interface can be implemented by a class make an contract with class, make multiple inheritance.
+- When other parts of our code which rely on that interface, they can be sure that the object they are working with will have the properties and methods defined in the interface.
 
 ```ts
 interface Greetable {
@@ -462,4 +463,35 @@ let user1: Greetable;
 user1 = new Person("Hoang");
 
 user1.greet("Hi there - I am");
+```
+
+### Readonly Interface
+
+- readonly ~ final in Java
+- Readonly interface is a good practice to make sure that the object is not changed.
+
+```ts
+interface Greetable {
+  readonly name: string;
+
+  greet(phrase: string): void;
+}
+
+class Person implements Greetable {
+  name: string;
+  age = 30;
+
+  constructor(n: string) {
+    this.name = n;
+  }
+
+  greet(phrase: string) {
+    console.log(phrase + " " + this.name);
+  }
+}
+
+let user1: Greetable;
+
+user1 = new Person("Hoang");
+user1.name = "Duong"; //error, because name is readonly
 ```
