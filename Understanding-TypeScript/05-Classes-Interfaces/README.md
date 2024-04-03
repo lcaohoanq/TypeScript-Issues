@@ -522,3 +522,27 @@ class Person implements Greetable {
   }
 }
 ```
+
+### Interface as Function Types
+
+- Custom type for a function
+
+```ts
+type AddFn = (a: number, b: number) => number;
+
+interface AddFn {
+  (a: number, b: number): number;
+  //without add a function name, it will be a function type
+}
+
+let add: AddFn;
+
+add = (n1: number, n2: number) => {
+  return n1 + n2;
+};
+
+//error
+addV2 = (n1: string, n2: number) => {
+  return n1 + n2;
+};
+```
