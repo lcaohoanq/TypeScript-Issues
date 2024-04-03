@@ -546,3 +546,38 @@ addV2 = (n1: string, n2: number) => {
   return n1 + n2;
 };
 ```
+
+### Optional Parameters & Properties
+
+- The optional properties are marked with a `?` after the property name.
+- Make a flexibility when structure the class
+
+```ts
+interface Named {
+  readonly name?: string;
+  outputname?: string;
+}
+
+function greet(user?: Named) {
+  if (user) {
+    console.log("Hi, I am " + user.name);
+  } else {
+    console.log("Hi, I am a guest");
+  }
+}
+
+class Person implements Greetable {
+  name?: string;
+  age = 30;
+
+  constructor(n?: string) {
+    if (n) {
+      this.name = n;
+    }
+  }
+
+  greet(phrase: string) {
+    console.log(phrase + " " + this.name);
+  }
+}
+```
