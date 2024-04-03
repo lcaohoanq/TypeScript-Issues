@@ -408,3 +408,7 @@ class AccountingDepartment extends Department {
 const accounting = AccountingDepartment.getInstance();
 const accounting2 = AccountingDepartment.getInstance();
 ```
+
+## Interfaces
+
+- Interfaces are a way to define the structure of an object.
