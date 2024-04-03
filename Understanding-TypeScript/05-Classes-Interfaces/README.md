@@ -371,3 +371,40 @@ abstract class Department {
 - Must define the return type of the method in the abstract class.
 - Abstract class are useful when you want all classes base on some other class share some common method or properties.
 - Abstract class can have abstract method
+
+## Singleton
+
+- Ensure that a class has only one instance and provide a global point of access to it.
+- We can have a more than one IT department, but we want to have only one accounting department.
+
+```ts
+class AccountingDepartment extends Department {
+  private lastReport: string;
+  static fiscalYear = 2020;
+
+  private static instance: AccountingDepartment;
+
+  private constructor(id: string, private reports: string[]) {
+    super(id, "Accounting");
+    this.lastReport = reports[0];
+  }
+
+  static getInstance() {
+    if (AccountingDepartment.instance) {
+      return this.instance;
+    }
+    return (this.instance = new AccountingDepartment("d2", []));
+  }
+}
+
+//ensure we can't call 'new' on it
+//it only access inside the class only
+//because we cannot create a new instance of the class, we can only get the instance of the class by static method
+```
+
+- we only have the one instance of the class, even call the `getInstance` method multiple times.
+
+```ts
+const accounting = AccountingDepartment.getInstance();
+const accounting2 = AccountingDepartment.getInstance();
+```
