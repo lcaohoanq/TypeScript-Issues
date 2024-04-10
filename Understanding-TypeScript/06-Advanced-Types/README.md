@@ -170,3 +170,148 @@ function moveAnimal(animal: Animal) {
 moveAnimal({ type: "bird", runningSpeed: 10 }); //Error
 moveAnimal({ type: "bird", flyingSpeed: 10 });
 ```
+
+# Type casting
+
+```ts
+const userInputElement = document.getElementById("user-input")!;
+// HTMLInputElement | null
+
+userInputElement.value = "Hi there!";
+// Error: Object is possibly 'null'
+//so we pass the ! to tell TS that it will never be null
+//but still TS does not know the type of the element, and tell that the type is HTMLElement
+//and it do not have the property value
+```
+
+## Two ways of type casting
+
+- Angle-bracket syntax
+
+```ts
+const userInputElement = <HTMLInputElement>(
+  document.getElementById("user-input")!
+);
+
+userInputElement.value = "Hi there!";
+```
+
+- `as` keyword
+
+```ts
+const userInputElement = document.getElementById(
+  "user-input"
+)! as HTMLInputElement;
+
+userInputElement.value = "Hi there!";
+```
+
+```ts
+const userInputElement = document.getElementById("user-input");
+
+if (userInputElement) {
+  (userInputElement as HTMLInputElement).value = "Hi there!";
+}
+```
+
+# Index Properties
+
+- We can define an object with a dynamic number of properties.
+- We can use index properties to define such objects.
+- The index property is a property that is not known at compile time.
+
+```ts
+interface ErrorContainer {
+  id: string; // this is a fixed property
+  id: number; // Error
+
+  [prop: string]: string;
+  // i don't know exactly the property name, still don't know the properties count,
+  //but i know that every object which is add to this interface will have a string property
+}
+
+const errorBag: ErrorContainer = {
+  id: "e1",
+
+  email: "Not a valid email!",
+  username: "Must start with a capital character!",
+};
+```
+
+> key is number and value is string
+
+```ts
+interface ErrorContainer {
+  [prop: number]: string;
+}
+const errorBag: ErrorContainer = {
+  1: "Not a valid email!",
+  2: "Must start with a capital character!",
+};
+```
+
+# Function Overloads
+
+- We can define multiple function signatures for a function.
+
+```ts
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+function add(a: string, b: number): string;
+function add(a: number, b: string): string;
+
+function add(a: Combinable, b: Combinable) {
+  if (typeof a === "string" || typeof b === "string") {
+    return a.toString() + b.toString();
+  }
+  return a + b;
+}
+```
+
+# Optional Chaining
+
+- We can use optional chaining to avoid runtime errors when accessing nested properties.
+
+- Optional chaining is a feature that allows you to access deeply nested object properties without worrying if the property exists or not.
+
+- The optional chaining operator `?.` permits reading the value of a property located deep within a chain of connected objects without having to expressly validate that each reference in the chain is valid.
+
+```ts
+const fetchedUserData = {
+  id: "u1",
+  name: "Max",
+  job: { title: "CEO", description: "My own company" },
+};
+
+console.log(fetchedUserData?.job?.title);
+//if any meet undefined, it will return undefined and not continue to the next property
+//if not use optional chaining, it will throw an error
+```
+
+# Nullish Coalescing
+
+- The nullish coalescing operator `??` is a logical operator that returns its right-hand side operand when its left-hand side operand is `null` or `undefined`, and otherwise returns its left-hand side operand.
+
+```ts
+const userInput = null;
+
+const storedData = userInput ?? "DEFAULT";
+
+console.log(storedData); //DEFAULT
+```
+
+```ts
+const userInput = undefined;
+
+const storedData = userInput ?? "DEFAULT";
+
+console.log(storedData); //DEFAULT
+```
+
+```ts
+const userInput = "";
+
+const storedData = userInput ?? "DEFAULT";
+
+console.log(storedData); //""
+```
