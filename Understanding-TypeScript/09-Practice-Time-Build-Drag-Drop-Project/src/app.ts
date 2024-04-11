@@ -50,10 +50,47 @@ class ProjectInput {
     this.configure();
     this.attach();
   }
+  //the return type is tuple
+  private gatherUserInput(): [string, string, number] | void {
+    const enteredTitle = this.titleInputElement.value;
+    const enteredDescription = this.descriptionInputElement.value;
+    const enteredPeople = this.peopleInputElement.value;
+
+    if (
+      enteredTitle.trim().length === 0 ||
+      enteredDescription.trim().length === 0 ||
+      enteredPeople.trim().length === 0
+    ) {
+      alert("Invalid input, please try again!");
+      return;
+    } else {
+      //anything extract by enteredPeople will be text
+      //but we need to convert it to number
+      //two ways
+      //1. +enteredPeople
+      //2. parseInt(enteredPeople)
+      return [enteredTitle, enteredDescription, +enteredPeople];
+    }
+  }
+
+  private clearInputs() {
+    this.titleInputElement.value = "";
+    this.descriptionInputElement.value = "";
+    this.peopleInputElement.value = "";
+  }
+
   @autoBind
   private submitHandler(event: Event) {
     event.preventDefault();
-    console.log(this.titleInputElement.value);
+    const userInput = this.gatherUserInput();
+    //to check the tuple, we just remember that
+    //tuple is an array also
+    //with fixed length and fixed type
+    if (Array.isArray(userInput)) {
+      const [title, desc, people] = userInput;
+      console.log(title, desc, people);
+      this.clearInputs();
+    }
   }
 
   private configure() {
