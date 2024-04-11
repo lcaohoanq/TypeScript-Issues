@@ -1,0 +1,5 @@
+- autobind function to bind this to the class
+- we should see the error "... is declared but its value is never read" in the console
+  - go to tsconfig.json
+    - "noUnusedParameters": false,
+    - \_: any and \_2: string to tell typescript that we are not using these variables
