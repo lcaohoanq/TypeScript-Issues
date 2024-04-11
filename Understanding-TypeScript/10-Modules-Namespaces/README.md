@@ -39,6 +39,10 @@ namespace App {
 
 - This have a problem, the namespace is TS feature only, when compile to JS it will be destroyed.
 - Solution 1:
+
   - tsconfig.json - "outFile": "bundle.js" // combine all files js compiled into one file - "module": "amd" // use requirejs to load the file
     > may be you meet this error: Cannot find module 'undici-types'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?
     > Solution: add "moduleResolution": "node" to tsconfig.json
+
+- The problem of namespace is that
+  - Not safe
