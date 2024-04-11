@@ -50,17 +50,21 @@ class ProjectInput {
     this.configure();
     this.attach();
   }
+
+  private validate(title: string, desc: string, people: number) {
+    if (title.trim().length === 0 || desc.trim().length === 0 || people <= 0) {
+      return false;
+    }
+    return true;
+  }
+
   //the return type is tuple
   private gatherUserInput(): [string, string, number] | void {
     const enteredTitle = this.titleInputElement.value;
     const enteredDescription = this.descriptionInputElement.value;
     const enteredPeople = this.peopleInputElement.value;
 
-    if (
-      enteredTitle.trim().length === 0 ||
-      enteredDescription.trim().length === 0 ||
-      enteredPeople.trim().length === 0
-    ) {
+    if (!this.validate(enteredTitle, enteredDescription, +enteredPeople)) {
       alert("Invalid input, please try again!");
       return;
     } else {
