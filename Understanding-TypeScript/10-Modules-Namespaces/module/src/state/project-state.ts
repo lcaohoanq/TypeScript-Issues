@@ -62,3 +62,7 @@ export class ProjectState extends State<Project> {
 }
 
 export const projectState = ProjectState.getInstance();
+// this import is used in multiple file
+// does this run one or twice or more times?
+
+//answer: it run one time, if another file imports this file, it will not run again
