@@ -181,3 +181,69 @@ names.pop(); // Error
 
 - `Partial`: This utility type allows you to create a new type from an existing type where `all properties are optional`. This is useful when you want to create a new object based on an existing object but you don't want to have to set all the properties.
 - `Readonly`: This utility type allows you to create a new type from an existing type where `all properties are readonly`. This is useful when you want to prevent changes to an object after it has been created.
+
+# Generic Types vs Union Types
+
+- Generic types are a way to create reusable components that can work with a variety of types. They allow you to create components that are more flexible and reusable.
+
+- Union types are a way to create components that can work with a variety of types. They allow you to create components that are more flexible and reusable.
+
+- The key difference between the two is that generic types allow you to create components that can work with a variety of types, while union types allow you to create components that can work with a specific set of types.
+
+## Generic Types
+
+- Whenever you pass an argument, it just stick with that type
+
+```ts
+class DataStorage<T extends string | number | boolean> {
+  private data: T[] = [];
+
+  addItem(item: T) {
+    this.data.push(item);
+  }
+
+  removeItem(item: T) {
+    this.data.splice(this.data.indexOf(item), 1);
+  }
+
+  getItems() {
+    return [...this.data];
+  }
+}
+```
+
+```ts
+const textStorage = new DataStorage<string>();
+textStorage.addItem("Hoang");
+textStorage.addItem(10); // Error
+textStorage.addItem("Nhu");
+```
+
+## Union Types
+
+- Whenever you pass an argument, it can be any type and decide for each type separately
+
+```ts
+class DataStorage {
+  private data: (string | number | boolean)[] = [];
+
+  addItem(item: string | number | boolean) {
+    this.data.push(item);
+  }
+
+  removeItem(item: string | number | boolean) {
+    this.data.splice(this.data.indexOf(item), 1);
+  }
+
+  getItems() {
+    return [...this.data];
+  }
+}
+```
+
+```ts
+const textStorage = new DataStorage();
+textStorage.addItem("Hoang");
+textStorage.addItem(10);
+textStorage.addItem("Nhu");
+```
