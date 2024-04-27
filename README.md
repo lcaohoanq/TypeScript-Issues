@@ -1,0 +1,1 @@
+- Hello Friends, welcome to my path learning TypeScript. I am a beginner and learning TypeScript from scratch. I will be sharing my learning journey with you all. I hope you will enjoy it.
